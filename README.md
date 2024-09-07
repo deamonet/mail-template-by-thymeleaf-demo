@@ -1,0 +1,1 @@
+# mail-template-by-thymeleaf-demo

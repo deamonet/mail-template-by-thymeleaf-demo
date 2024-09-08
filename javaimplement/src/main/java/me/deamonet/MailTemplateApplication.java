@@ -7,9 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 @SpringBootApplication
 public class MailTemplateApplication implements CommandLineRunner {
@@ -23,8 +20,7 @@ public class MailTemplateApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Map<String, Object> map = new HashMap<>();
-        map.put("recipientName", "test");
-        mailService.sendMessageUsingThymeleafTemplate(args[0], args[1], map);
+        mailService.sendMessageUsingThymeleafTemplate(args[0], args[1], "single-variable");
+        mailService.sendMessageUsingThymeleafTemplate(args[0], args[1], "i18n-template");
     }
 }

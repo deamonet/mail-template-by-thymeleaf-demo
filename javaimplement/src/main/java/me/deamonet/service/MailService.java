@@ -20,15 +20,11 @@ public class MailService {
     @Resource
     private SpringTemplateEngine thymeleafTemplateEngine;
 
-    public void sendMessageUsingThymeleafTemplate(
-            String to, String subject, Map<String, Object> templateModel)
-            throws MessagingException {
-
+    public void sendMessageUsingThymeleafTemplate(String to, String subject, String template) throws MessagingException {
         Context thymeleafContext = new Context();
-        thymeleafContext.setVariables(templateModel);
-        String htmlBody = thymeleafTemplateEngine.process("template-thymeleaf.html", thymeleafContext);
-
-        sendHtmlMessage(to, subject, htmlBody);
+        thymeleafContext.setVariable("variable1", "test");
+        String htmlBody = thymeleafTemplateEngine.process(template, thymeleafContext);
+        System.out.println(htmlBody);
     }
 
     private void sendHtmlMessage(String to, String subject, String htmlBody) throws MessagingException {

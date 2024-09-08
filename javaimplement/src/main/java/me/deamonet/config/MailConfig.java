@@ -20,15 +20,6 @@ import java.util.Properties;
 @Configuration
 public class MailConfig {
 
-    private static final String EMAIL_TEMPLATE_ENCODING = "utf-8";
-
-    @Bean
-    public ResourceBundleMessageSource emailMessageSource() {
-        final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("mail/MailMessages");
-        return messageSource;
-    }
-
     @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
@@ -43,6 +34,14 @@ public class MailConfig {
 
         return mailSender;
     }
+
+    @Bean
+    public ResourceBundleMessageSource emailMessageSource() {
+        final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        messageSource.setBasename("mail/MailMessages");
+        return messageSource;
+    }
+
 
     @Bean
     @Primary
